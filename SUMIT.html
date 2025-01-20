@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumit VIP Predictor ✨</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #2e2e44;
+            border-radius: 10px;
+            padding: 30px 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #a9a9b7;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            outline: none;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        input[type="text"]:focus {
+            border-color: #ffd700;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ffd700;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e0c800;
+        }
+
+        .loading {
+            color: #ffd700;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .result {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #00ff00;
+        }
+
+        .error {
+            color: #ff4d4d;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">SUMIT VIP PREDICTOR ✨</div>
+        <div class="subtitle">Enter a 3-digit period number to get a prediction</div>
+        
+        <input type="text" id="periodInput" placeholder="Enter 3-digit period">
+        <button onclick="generatePrediction()">Predict</button>
+
+        <div id="loading" class="loading" style="display: none;">CALCULATING PATTERN⏩...</div>
+        <div id="result" class="result"></div>
+        <div id="error" class="error"></div>
+    </div>
+
+    <script>
+        function generatePrediction() {
+            const periodInput = document.getElementById('periodInput').value;
+            const resultDiv = document.getElementById('result');
+            const errorDiv = document.getElementById('error');
+            const loadingDiv = document.getElementById('loading');
+
+            // Clear previous messages
+            resultDiv.textContent = '';
+            errorDiv.textContent = '';
+
+            // Validate input
+            if (!/^\d{3}$/.test(periodInput)) {
+                errorDiv.textContent = "Invalid input. Please enter a 3-digit period number.";
+                return;
+            }
+
+            // Show loading message
+            loadingDiv.style.display = 'block';
+
+            // Simulate loading delay
+            setTimeout(() => {
+                loadingDiv.style.display = 'none';
+
+                // Generate random prediction
+                const sizes = ["Big", "Small"];
+                const colors = ["Green 🟢", "Red 🔴"];
+                const size = sizes[Math.floor(Math.random() * sizes.length)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const winningPercentage = Math.floor(Math.random() * 51) + 50; // Random number between 50 and 100
+
+                const prediction = `${size} - ${color} (Winning Percentage: ${winningPercentage}%)`;
+                resultDiv.textContent = `Prediction: ${prediction}`;
+            }, 1500); // 1.5 seconds delay for loading effect
+        }
+    </script>
+</body>
+</html>
